@@ -1,0 +1,103 @@
+---
+description: Coding standards
+globs:
+alwaysApply: true
+---
+
+# Code Guidelines
+
+## General
+
+- Follow SOLID principles
+- Follow Clean Architecture principles
+- Follow SDD (Specification Driven Development)
+- Prefer composition over inheritance
+- Use dependency injection
+- Avoid global state
+
+---
+
+## Python
+
+- Python 3.12+
+- Full type hints required
+- mypy compatible
+- Ruff compliant
+
+Example:
+
+```python
+def search(query: str) -> list[SearchResult]:
+    ...
+```
+
+---
+
+## FastAPI
+
+- One router per feature
+- Dependency injection via Depends
+- No database access inside routers
+
+Bad:
+
+```python
+@router.get("/")
+async def endpoint():
+    return session.execute(...)
+```
+
+Good:
+
+```python
+@router.get("/")
+async def endpoint(service: SearchService):
+    return await service.search(...)
+```
+
+---
+
+## SQLAlchemy
+
+Use SQLAlchemy 2.0 style.
+
+Required:
+
+```python
+select(...)
+```
+
+Avoid legacy query API.
+
+---
+
+## Error Handling
+
+Use domain exceptions.
+
+Examples:
+
+- SourceNotFoundError
+- InvalidSourceError
+- SearchError
+
+Convert exceptions to HTTP responses in API layer.
+
+---
+
+## Logging
+
+Use structured logging.
+
+Log:
+
+- Search requests
+- Feed updates
+- Article ingestion
+- Scheduler execution
+- Errors
+
+Do not log:
+
+- Embeddings
+- Full article content

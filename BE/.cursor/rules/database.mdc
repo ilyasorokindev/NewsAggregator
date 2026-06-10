@@ -1,0 +1,83 @@
+---
+description: Database design
+globs:
+alwaysApply: true
+---
+
+# Database Design
+
+## Tables
+
+### sources
+
+Stores configured news sources.
+
+Columns:
+
+| Name | Type |
+|--------|--------|
+| guid | UUID |
+| url | TEXT |
+| created_at | TIMESTAMP |
+
+---
+
+### news_chunks
+
+Stores searchable content.
+
+Columns:
+
+| Name | Type |
+|--------|--------|
+| guid | UUID |
+| source_guid | UUID |
+| text | TEXT |
+| embedding | VECTOR |
+| created_at | TIMESTAMP |
+
+---
+
+## Chunk Rules
+
+Each chunk contains only:
+
+- text
+- creation date
+
+No metadata storage:
+
+- title
+- author
+- category
+- tags
+- image
+- article url
+
+must not be stored.
+
+---
+
+## Indexes
+
+Required:
+
+```sql
+ivfflat
+```
+
+Vector index:
+
+```sql
+CREATE INDEX news_chunks_embedding_idx
+ON news_chunks
+USING ivfflat (embedding vector_cosine_ops);
+```
+
+---
+
+## Migrations
+
+All schema changes must use Alembic.
+
+Direct schema modifications are forbidden.

@@ -1,0 +1,175 @@
+---
+description: Project overview and business requirements
+globs:
+alwaysApply: true
+---
+
+# News Aggregator Backend
+
+## Goal
+
+Build a backend-only News Aggregator application that periodically collects news articles from configured news websites, extracts article text, generates vector embeddings, and stores them in PostgreSQL with pgvector for semantic search.
+
+The system must support:
+
+1. News ingestion from configured websites
+2. Semantic news search
+3. Source management (CRUD)
+4. Automatic background synchronization
+
+No frontend is required.
+
+---
+
+## Functional Requirements
+
+### News Source Management
+
+Users can:
+
+- Add news source URL
+- Edit existing source URL
+- Delete source
+- List configured sources
+
+### News Collection
+
+The system periodically:
+
+1. Reads all configured sources
+2. Fetches RSS/Atom feeds when available
+3. Downloads article pages
+4. Extracts article text
+5. Splits text into chunks
+6. Generates embeddings
+7. Stores chunks in vector database
+
+### Search
+
+Users can search news content.
+
+Search flow:
+
+1. User submits query
+2. Query embedding is generated
+3. Vector similarity search is executed
+4. Results are returned ordered by relevance
+
+---
+
+## API Specification
+
+### Search
+
+GET /search?s={query}
+
+Response:
+
+```json
+[
+  {
+    "guid": "string",
+    "text": "string"
+  }
+]
+```
+
+---
+
+### List Sources
+
+GET /setup/items
+
+Response:
+
+```json
+[
+  {
+    "guid": "string",
+    "url": "string"
+  }
+]
+```
+
+---
+
+### Create Source
+
+POST /setup/item
+
+Request:
+
+```json
+{
+  "url": "https://example.com/rss"
+}
+```
+
+Response:
+
+```json
+{
+  "guid": "string"
+}
+```
+
+---
+
+### Update Source
+
+PUT /setup/item
+
+Request:
+
+```json
+{
+  "guid": "string",
+  "url": "https://example.com/rss"
+}
+```
+
+Response:
+
+```json
+{
+  "success": true
+}
+```
+
+---
+
+### Delete Source
+
+DELETE /setup/item
+
+Request:
+
+```json
+{
+  "guid": "string"
+}
+```
+
+Response:
+
+```json
+{
+  "success": true
+}
+```
+
+---
+
+## Non-Functional Requirements
+
+- Python 3.12+
+- FastAPI
+- PostgreSQL
+- pgvector
+- SQLAlchemy 2.x
+- Alembic migrations
+- Docker Compose
+- Background scheduler
+- Semantic search
+- REST API only
+- OpenAPI documentation

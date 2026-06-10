@@ -1,0 +1,102 @@
+---
+description: API design rules
+globs:
+alwaysApply: true
+---
+
+# API Rules
+
+## Response Format
+
+Success responses:
+
+```json
+{}
+```
+
+Error responses:
+
+```json
+{
+  "error": {
+    "code": "string",
+    "message": "string"
+  }
+}
+```
+
+---
+
+## Search Endpoint
+
+Endpoint:
+
+```http
+GET /search?s=query
+```
+
+Returns:
+
+```json
+[
+  {
+    "guid": "string",
+    "text": "string"
+  }
+]
+```
+
+Maximum results:
+
+- 20
+
+Minimum similarity threshold:
+
+- configurable
+
+---
+
+## Setup Endpoints
+
+### GET /setup/items
+
+Returns:
+
+```json
+[
+  {
+    "guid": "string",
+    "url": "string"
+  }
+]
+```
+
+---
+
+### POST /setup/item
+
+Creates source.
+
+---
+
+### PUT /setup/item
+
+Updates source.
+
+---
+
+### DELETE /setup/item
+
+Deletes source.
+
+---
+
+## Validation
+
+URL validation required.
+
+Reject:
+
+- invalid URLs
+- empty URLs
+- duplicate URLs

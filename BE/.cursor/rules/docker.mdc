@@ -1,0 +1,58 @@
+---
+description: Deployment and infrastructure
+globs:
+alwaysApply: true
+---
+
+# Infrastructure
+
+## Docker Compose
+
+Services:
+
+- api
+- postgres
+
+Optional:
+
+- pgadmin
+
+---
+
+## Environment Variables
+
+```env
+DATABASE_URL=
+EMBEDDING_MODEL=
+SYNC_INTERVAL_MINUTES=
+LOG_LEVEL=
+```
+
+---
+
+## Health Check
+
+Endpoint:
+
+```http
+GET /health
+```
+
+Response:
+
+```json
+{
+  "status": "ok"
+}
+```
+
+---
+
+## Startup Sequence
+
+1. Database starts
+2. Migrations run
+3. API starts
+4. Scheduler starts
+
+Application must fail fast on startup errors.

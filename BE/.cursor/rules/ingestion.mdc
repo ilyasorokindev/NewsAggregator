@@ -1,0 +1,84 @@
+---
+description: News ingestion rules
+globs:
+alwaysApply: true
+---
+
+# News Ingestion
+
+## Source Processing
+
+Supported:
+
+- RSS
+- Atom
+
+Primary library:
+
+- feedparser
+
+---
+
+## Content Extraction
+
+Primary library:
+
+- BeautifulSoup
+
+Extraction goals:
+
+- remove navigation
+- remove scripts
+- remove ads
+- remove styles
+
+Store only readable text.
+
+---
+
+## Chunking
+
+Chunk size:
+
+- 500 characters
+
+Overlap:
+
+- 100 characters
+
+Configurable through settings.
+
+---
+
+## Embeddings
+
+Library:
+
+- Sentence Transformers
+
+Default model:
+
+```text
+all-MiniLM-L6-v2
+```
+
+Embedding generation must be isolated behind an interface.
+
+---
+
+## Duplicate Prevention
+
+Before storing chunk:
+
+1. Check existing text hash
+2. Skip duplicates
+
+---
+
+## Failures
+
+Failures for one source must not stop processing of other sources.
+
+Processing must continue.
+
+All failures must be logged.

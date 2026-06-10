@@ -1,0 +1,136 @@
+\---
+description: System architecture
+globs:
+alwaysApply: true
+---
+
+# Architecture
+
+## Architecture Style
+
+Layered Architecture
+
+```text
+API Layer
+    ↓
+Application Layer
+    ↓
+Domain Layer
+    ↓
+Infrastructure Layer
+```
+
+---
+
+## Components
+
+### API
+
+Responsibilities:
+
+- Request validation
+- Response serialization
+- HTTP error handling
+
+Technology:
+
+- FastAPI
+- Pydantic
+
+---
+
+### Application Layer
+
+Responsibilities:
+
+- Use cases
+- Transaction boundaries
+- Search orchestration
+- Source management
+
+Services:
+
+- SearchService
+- SourceService
+- IngestionService
+
+---
+
+### Domain Layer
+
+Contains:
+
+- Entities
+- Repository contracts
+- Business rules
+
+No framework dependencies allowed.
+
+---
+
+### Infrastructure Layer
+
+Contains:
+
+- PostgreSQL access
+- pgvector integration
+- Feed parsers
+- HTML extraction
+- Embedding generation
+- Scheduler
+
+---
+
+## Background Processing
+
+Scheduler:
+
+- APScheduler
+
+Jobs:
+
+- Feed synchronization
+- Article ingestion
+- Embedding generation
+
+Default interval:
+
+- Every 15 minutes
+
+---
+
+## Data Flow
+
+```text
+Configured Source
+        ↓
+feedparser
+        ↓
+Article URL
+        ↓
+BeautifulSoup
+        ↓
+Text Extraction
+        ↓
+Chunking
+        ↓
+SentenceTransformer
+        ↓
+Embedding
+        ↓
+PostgreSQL + pgvector
+```
+
+---
+
+## Search Flow
+
+```text
+Query
+  ↓
+Embedding
+  ↓
+pgvector similarity search
+  ↓
+Top Results
+```
