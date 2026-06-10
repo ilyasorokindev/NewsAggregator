@@ -1,0 +1,128 @@
+# Project Overview
+
+## Project Name
+News Aggregator Frontend
+
+## Purpose
+
+Build a frontend application that allows users to:
+
+1. Search news content stored in a backend vector database.
+2. Manage a list of news websites used by the backend ingestion pipeline.
+
+The frontend DOES NOT perform crawling, scraping, embedding generation, or vector storage operations.
+
+The frontend communicates exclusively through the provided REST API.
+
+---
+
+## Technology Stack
+
+- React
+- TypeScript
+- Redux Toolkit
+- React Router
+- Material UI (MUI)
+- Axios
+- Vite
+
+---
+
+## Application Pages
+
+### 1. Search Page
+
+Purpose:
+- Search indexed news content.
+- Display matching news chunks.
+
+Features:
+- Search input
+- Search button
+- Loading state
+- Error state
+- Results list
+
+API:
+
+GET
+
+/search?s={query}
+
+Response:
+
+[
+  {
+    "guid": "string",
+    "text": "string"
+  }
+]
+
+---
+
+### 2. Settings Page
+
+Purpose:
+Manage news source websites.
+
+Features:
+- View configured websites
+- Add website
+- Edit website
+- Delete website
+
+API:
+
+GET /setup/items
+
+Response:
+
+[
+  {
+    "guid": "string",
+    "url": "string"
+  }
+]
+
+POST /setup/item
+
+PUT /setup/item
+
+DELETE /setup/item
+
+Request payload:
+
+{
+  "guid": "string",
+  "url": "string"
+}
+
+---
+
+## Data Assumptions
+
+Backend stores content chunks in a vector database.
+
+Each chunk contains:
+
+- text
+- created date
+
+Search results only expose:
+
+- guid
+- text
+
+The frontend does not display embeddings or vector information.
+
+---
+
+## Non Functional Requirements
+
+- Fully responsive
+- Type-safe
+- No business logic inside components
+- Redux Toolkit for global state
+- Feature-oriented folder structure
+- Reusable UI components
+- Material UI styling only

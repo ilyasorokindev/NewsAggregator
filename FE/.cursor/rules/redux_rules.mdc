@@ -1,0 +1,56 @@
+# Redux Rules
+
+## Store Structure
+
+Root State
+
+{
+  search: SearchState,
+  settings: SettingsState
+}
+
+---
+
+## SearchState
+
+{
+  results: SearchResult[],
+  loading: boolean,
+  error: string | null
+}
+
+---
+
+## SettingsState
+
+{
+  items: WebsiteItem[],
+  loading: boolean,
+  error: string | null
+}
+
+---
+
+## Async Actions
+
+Search:
+
+searchNews(query)
+
+Settings:
+
+loadWebsites()
+
+createWebsite(url)
+
+updateWebsite(item)
+
+deleteWebsite(guid)
+
+---
+
+## Selectors
+
+Create selectors for all state access.
+
+Components should never directly access deep state structures.

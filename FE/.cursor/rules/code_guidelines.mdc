@@ -1,0 +1,131 @@
+# Code Guidelines
+
+## General
+
+- Use TypeScript strict mode.
+- Use functional components.
+- Use hooks only.
+- Avoid class components.
+
+---
+
+## Naming
+
+Components:
+PascalCase
+
+Example:
+
+SearchResults.tsx
+
+Functions:
+camelCase
+
+Variables:
+camelCase
+
+Constants:
+UPPER_SNAKE_CASE
+
+---
+
+## Exports
+
+Prefer named exports.
+
+Avoid default exports.
+
+Example:
+
+export const SearchPage = () => {}
+
+---
+
+## Component Rules
+
+Components must:
+
+- be small
+- have one responsibility
+- receive typed props
+
+Avoid components larger than 200 lines.
+
+---
+
+## Redux Rules
+
+Use Redux Toolkit.
+
+Use:
+
+- createSlice
+- createAsyncThunk
+
+Never use:
+
+- redux-thunk manually
+- redux-saga
+- mobx
+
+---
+
+## MUI Rules
+
+Use:
+
+- Stack
+- Box
+- Grid
+- Paper
+- Typography
+
+Prefer sx prop.
+
+Avoid custom CSS files whenever possible.
+
+---
+
+## API Rules
+
+Axios instance must be centralized.
+
+Example:
+
+shared/api/httpClient.ts
+
+No duplicate request code.
+
+---
+
+## Error Handling
+
+Every request must support:
+
+- loading
+- success
+- error
+
+States explicitly represented in Redux.
+
+---
+
+## Type Safety
+
+No usage of:
+
+any
+
+Use explicit interfaces and types.
+
+---
+
+## Imports
+
+Order:
+
+1. React
+2. Third-party libraries
+3. Shared modules
+4. Feature modules
+5. Relative imports

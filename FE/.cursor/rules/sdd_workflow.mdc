@@ -1,0 +1,54 @@
+# Specification Driven Development Workflow
+
+Before implementing any feature:
+
+1. Read project.mdc
+2. Read architecture.mdc
+3. Read frontend_specification.mdc
+4. Read code_guidelines.mdc
+
+---
+
+Implementation Order
+
+Phase 1
+
+- Project setup
+- Routing
+- Store configuration
+- Shared infrastructure
+
+Phase 2
+
+- Search feature
+
+Phase 3
+
+- Settings feature
+
+Phase 4
+
+- Validation
+- Error handling
+- Notifications
+
+Phase 5
+
+- Cleanup
+- Refactoring
+- Testing
+
+---
+
+Definition of Done
+
+A feature is complete only when:
+
+- UI implemented
+- Redux state implemented
+- API integration implemented
+- Loading state implemented
+- Error state implemented
+- TypeScript types implemented
+- MUI components used
+- Responsive layout verified

@@ -1,0 +1,133 @@
+# Functional Specification
+
+## Search Feature
+
+### User Story
+
+As a user,
+I want to search indexed news,
+so that I can find relevant information quickly.
+
+---
+
+### Search Flow
+
+1. User enters query.
+2. User clicks Search.
+3. Application calls:
+
+GET /search?s=query
+
+4. Results displayed as cards.
+
+---
+
+### Result Card
+
+Displays:
+
+- Text
+
+Hidden:
+
+- GUID
+
+---
+
+### Empty Results
+
+Display:
+
+"No news found"
+
+---
+
+### Errors
+
+Display user-friendly error message.
+
+---
+
+## Settings Feature
+
+### User Story
+
+As a user,
+I want to manage source websites,
+so that backend ingestion knows where to collect news.
+
+---
+
+### Load Sources
+
+On page open:
+
+GET /setup/items
+
+Display website list.
+
+---
+
+### Add Website
+
+User clicks Add.
+
+Dialog opens.
+
+Fields:
+
+- URL
+
+Submit:
+
+POST /setup/item
+
+---
+
+### Edit Website
+
+User clicks Edit.
+
+Dialog opens.
+
+Current URL prefilled.
+
+Submit:
+
+PUT /setup/item
+
+---
+
+### Delete Website
+
+User clicks Delete.
+
+Confirmation dialog.
+
+Submit:
+
+DELETE /setup/item
+
+---
+
+### Validation
+
+URL required.
+
+URL must be valid.
+
+---
+
+### Success Feedback
+
+Snackbar:
+
+- Added successfully
+- Updated successfully
+- Deleted successfully
+
+---
+
+### Error Feedback
+
+Snackbar with backend error message.

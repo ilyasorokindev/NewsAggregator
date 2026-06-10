@@ -1,0 +1,90 @@
+# UI Guidelines
+
+## Design System
+
+Material UI.
+
+---
+
+## Navigation
+
+Top AppBar.
+
+Menu items:
+
+- Search
+- Settings
+
+---
+
+## Search Page Layout
+
+Container
+
+Search Form
+
+Results List
+
+---
+
+## Settings Page Layout
+
+Container
+
+Header
+
+Add Website Button
+
+Website List
+
+---
+
+## Loading States
+
+Use:
+
+- CircularProgress
+
+---
+
+## Empty States
+
+Use:
+
+Typography
+
+Examples:
+
+"No news found"
+
+"No websites configured"
+
+---
+
+## Dialogs
+
+Use MUI Dialog.
+
+Required:
+
+- Add Website Dialog
+- Edit Website Dialog
+- Delete Confirmation Dialog
+
+---
+
+## Notifications
+
+Use MUI Snackbar.
+
+Display all success and error messages.
+
+---
+
+## Accessibility
+
+All interactive controls must have labels.
+
+Keyboard navigation supported.
+
+Dialogs must trap focus.

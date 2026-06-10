@@ -1,0 +1,148 @@
+# Architecture
+
+## Architecture Style
+
+Feature-based architecture.
+
+---
+
+## Folder Structure
+
+src/
+
+app/
+store.ts
+router.tsx
+
+shared/
+
+api/
+httpClient.ts
+
+components/
+layout/
+common/
+
+types/
+
+features/
+
+search/
+
+api/
+searchApi.ts
+
+components/
+SearchForm.tsx
+SearchResults.tsx
+SearchResultCard.tsx
+
+pages/
+SearchPage.tsx
+
+store/
+searchSlice.ts
+searchThunks.ts
+
+types.ts
+
+settings/
+
+api/
+settingsApi.ts
+
+components/
+WebsiteDialog.tsx
+WebsiteList.tsx
+WebsiteItem.tsx
+
+pages/
+SettingsPage.tsx
+
+store/
+settingsSlice.ts
+settingsThunks.ts
+
+types.ts
+
+---
+
+## State Management
+
+Redux Toolkit.
+
+Each feature owns:
+
+- slice
+- async thunks
+- selectors
+- types
+
+---
+
+## API Layer
+
+All HTTP communication must be isolated inside:
+
+features/*/api
+
+Components must never call axios directly.
+
+---
+
+## Routing
+
+Routes:
+
+/
+SearchPage
+
+/settings
+SettingsPage
+
+---
+
+## Layout
+
+AppLayout
+
+Contains:
+
+- Top navigation bar
+- Navigation links
+- Main content area
+
+---
+
+## Data Flow
+
+UI
+
+↓
+
+Dispatch thunk
+
+↓
+
+API service
+
+↓
+
+Backend
+
+↓
+
+Redux Store
+
+↓
+
+UI update
+
+---
+
+## Forbidden
+
+- Business logic in components
+- Direct API calls from components
+- Global mutable state
+- Context API for application state
